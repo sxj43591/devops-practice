@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git 'https://github.com/sxj43591/devops-practice.git'
+        git branch: 'main', url: 'https://github.com/sxj43591/devops-practice.git'
       }
     }
     stage('Build') {
