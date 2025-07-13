@@ -14,9 +14,19 @@ pipeline {
         sh 'mvn clean compile'
       }
     }
+   stage('Test') {
+      steps {
+        sh 'mvn test'
+      }
+    }
+    stage('Package') {
+      steps {
+        sh 'mvn package'
+      }
+    }
     stage('Run') {
       steps {
-        sh 'java -cp target/classes com.example.HelloWorld'
+        sh 'java -cp target/helloworld-1.0.jar com.example.HelloWorld'
       }
     }
   }
