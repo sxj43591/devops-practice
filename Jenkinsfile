@@ -1,19 +1,22 @@
 pipeline {
   agent any
+  tools {
+    maven 'Maven 3.9'
+    }
   stages {
     stage('Checkout') {
       steps {
         git branch: 'main', url: 'https://github.com/sxj43591/devops-practice.git'
       }
     }
-    stage('Build') {
+    stage('Build with Maven') {
       steps {
-        sh 'javac HelloWorld.java'
+        sh 'mvn clean compile'
       }
     }
-    stage('Test') {
+    stage('Run') {
       steps {
-        sh 'java HelloWorld'
+        sh 'java -cp target/classes com.example.HelloWorld'
       }
     }
   }
