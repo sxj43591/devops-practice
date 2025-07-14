@@ -24,11 +24,18 @@ pipeline {
         sh 'mvn package'
       }
     }
+   
     stage('Run') {
       steps {
         sh 'java -cp target/helloworld-1.0.jar com.example.HelloWorld'
       }
     }
+    stage('Archive Artifact') {
+      steps {
+       archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+  }
+}
+
   }
 }
 
